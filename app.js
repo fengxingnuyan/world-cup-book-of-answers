@@ -658,9 +658,9 @@ function fitAnswerText(element, maxSize, minSize) {
 
   if (isCompactViewport()) {
     element.style.whiteSpace = "normal";
-    element.style.fontSize = `${Math.min(maxSize, 30)}px`;
+    element.style.fontSize = `${Math.min(maxSize, 26)}px`;
 
-    let nextSize = Math.min(maxSize, 30);
+    let nextSize = Math.min(maxSize, 26);
     const maxHeight = element.clientHeight || element.parentElement?.clientHeight || 0;
 
     while (

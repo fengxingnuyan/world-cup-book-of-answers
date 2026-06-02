@@ -521,6 +521,7 @@ button {
   white-space: normal;
   max-width: min(100%, 26rem);
   justify-self: center;
+  overflow-wrap: anywhere;
 }
 
 .card-answer {
@@ -539,8 +540,9 @@ button {
     0 0 18px rgba(240, 223, 171, 0.08),
     0 1px 0 rgba(112, 83, 30, 0.32);
   width: 100%;
-  max-width: min(100%, 16ch);
+  max-width: min(100%, 18rem);
   justify-self: center;
+  margin-inline: auto;
   word-break: normal;
   overflow-wrap: anywhere;
 }
@@ -549,7 +551,7 @@ button {
   white-space: nowrap;
   display: block;
   width: auto;
-  max-width: min(100%, 16ch);
+  max-width: min(100%, 18rem);
   line-height: 1.35;
   margin-inline: auto;
 }
@@ -557,15 +559,22 @@ button {
 .card-answer.is-multiline {
   white-space: pre-line;
   width: 100%;
-  max-width: min(100%, 16ch);
+  max-width: min(100%, 18rem);
   margin-inline: auto;
 }
 
 .answer-line {
   display: block;
-  width: auto;
+  width: fit-content;
   max-width: 100%;
   text-align: center;
+  margin-inline: auto;
+}
+
+.result-actions {
+  width: min(100%, 340px);
+  margin-inline: auto;
+  justify-self: center;
 }
 
 .share-hint {
@@ -779,24 +788,41 @@ button {
     padding: 32px 18px 40px;
   }
 
+  .card-question {
+    margin-bottom: 24px;
+    font-size: clamp(0.72rem, 3vw, 0.86rem);
+    line-height: 1.7;
+    max-width: min(100%, 15rem);
+  }
+
   .card-answer {
-    font-size: clamp(1.12rem, 6.6vw, 1.72rem);
+    font-size: clamp(1.04rem, 6.1vw, 1.56rem);
     width: 100%;
-    max-width: min(100%, 12ch);
-    line-height: 1.62;
-    letter-spacing: 0.02em;
+    max-width: min(100%, 11.2rem);
+    line-height: 1.56;
+    letter-spacing: 0.01em;
   }
 
   .card-answer.is-single-line,
   .card-answer.is-multiline {
     white-space: normal;
     width: 100%;
-    max-width: min(100%, 12ch);
+    max-width: min(100%, 11.2rem);
     margin-inline: auto;
   }
 
+  .answer-line {
+    max-width: 100%;
+  }
+
+  .result-actions {
+    width: min(100%, 240px);
+    gap: 12px;
+  }
+
   .secondary-button {
-    width: min(100%, 220px);
+    width: 100%;
+    min-width: 0;
   }
 }
 
@@ -829,8 +855,9 @@ button {
   .card-answer,
   .card-answer.is-single-line,
   .card-answer.is-multiline {
-    max-width: min(100%, 11ch);
-    font-size: clamp(1.04rem, 6vw, 1.44rem);
+    max-width: min(100%, 10rem);
+    font-size: clamp(0.98rem, 5.6vw, 1.34rem);
+    line-height: 1.52;
   }
 
   .question-input::placeholder {
