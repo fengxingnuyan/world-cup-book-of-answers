@@ -102,6 +102,7 @@ async function drawAnswer() {
   resultCard.classList.add("hidden");
   resultCard.classList.remove("is-revealed");
   resultActions.classList.add("hidden");
+  githubStarLink.classList.add("hidden");
   drawButton.disabled = true;
   againButton.disabled = true;
 
@@ -114,11 +115,13 @@ async function drawAnswer() {
   resultCard.classList.remove("hidden");
   resultCard.classList.add("is-revealed");
   resultActions.classList.remove("hidden");
-  githubStarLink.classList.remove("hidden");
   saveButton.classList.toggle("hidden", currentMode === "limit");
   drawButton.disabled = false;
   againButton.disabled = false;
   queueTypographyFit();
+  window.requestAnimationFrame(() => {
+    githubStarLink.classList.remove("hidden");
+  });
 }
 
 function pickAnswerForQuestion(question) {
