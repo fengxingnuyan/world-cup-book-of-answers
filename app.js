@@ -518,11 +518,43 @@ function setSaveHint(message) {
 
 function queueTypographyFit() {
   window.requestAnimationFrame(() => {
-    fitTextSingleLine(pageTitle, 64, 30);
-    fitTextSingleLine(pageLead, 22, 16);
+    fitHeroTitle(pageTitle, 64, 30);
+    fitHeroLead(pageLead, 22, 16);
     fitTextBlock(cardQuestion, 24, 14);
     fitAnswerText(cardAnswer, 36, 18);
   });
+}
+
+function isCompactViewport() {
+  return window.matchMedia("(max-width: 720px)").matches;
+}
+
+function fitHeroTitle(element, maxSize, minSize) {
+  if (!element || !element.textContent?.trim() || element.closest(".hidden")) {
+    return;
+  }
+
+  if (isCompactViewport()) {
+    element.style.removeProperty("font-size");
+    element.style.whiteSpace = "normal";
+    return;
+  }
+
+  fitTextSingleLine(element, maxSize, minSize);
+}
+
+function fitHeroLead(element, maxSize, minSize) {
+  if (!element || !element.textContent?.trim() || element.closest(".hidden")) {
+    return;
+  }
+
+  if (isCompactViewport()) {
+    element.style.removeProperty("font-size");
+    element.style.whiteSpace = "normal";
+    return;
+  }
+
+  fitTextSingleLine(element, maxSize, minSize);
 }
 
 function fitTextSingleLine(element, maxSize, minSize) {
