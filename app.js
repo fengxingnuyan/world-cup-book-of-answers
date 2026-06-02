@@ -115,7 +115,7 @@ async function drawAnswer() {
   resultCard.classList.remove("hidden");
   resultCard.classList.add("is-revealed");
   resultActions.classList.remove("hidden");
-  saveButton.classList.toggle("hidden", currentMode === "limit");
+  saveButton.classList.remove("hidden");
   drawButton.disabled = false;
   againButton.disabled = false;
   queueTypographyFit();
@@ -281,7 +281,7 @@ function returnToQuestionView() {
 }
 
 async function saveCardImage() {
-  if (!currentAnswer || currentMode === "limit") {
+  if (!currentAnswer) {
     return;
   }
 
