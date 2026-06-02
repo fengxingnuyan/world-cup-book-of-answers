@@ -25,6 +25,7 @@ body {
   margin: 0;
   font-family: "Noto Serif SC", "STSong", "Songti SC", "Microsoft YaHei", serif;
   color: var(--text);
+  overflow-x: hidden;
   background:
     linear-gradient(180deg, rgba(2, 8, 5, 0.04), rgba(2, 8, 5, 0.08)),
     url("file:///D:/%E8%B0%B7%E6%AD%8C%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B8%8B%E8%BD%BD/2026-06-02-10_33_51.png"),
@@ -469,6 +470,7 @@ button {
 
 .result-card {
   width: min(100%, 720px);
+  max-width: 100%;
   justify-self: center;
 }
 
@@ -482,6 +484,8 @@ button {
   background: transparent;
   border: 0;
   box-shadow: none;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 .card-frame::before {
@@ -521,9 +525,10 @@ button {
 
 .card-answer {
   margin: 0;
-  display: grid;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   gap: 0.18em;
-  justify-items: center;
   text-align: center;
   font-size: clamp(1.28rem, 4.8vw, 2.16rem);
   line-height: 1.7;
@@ -533,29 +538,33 @@ button {
   text-shadow:
     0 0 18px rgba(240, 223, 171, 0.08),
     0 1px 0 rgba(112, 83, 30, 0.32);
-  max-width: min(100%, 15ch);
+  width: 100%;
+  max-width: min(100%, 16ch);
   justify-self: center;
-  word-break: keep-all;
-  overflow-wrap: normal;
+  word-break: normal;
+  overflow-wrap: anywhere;
 }
 
 .card-answer.is-single-line {
   white-space: nowrap;
   display: block;
-  max-width: 100%;
+  width: auto;
+  max-width: min(100%, 16ch);
   line-height: 1.35;
+  margin-inline: auto;
 }
 
 .card-answer.is-multiline {
   white-space: pre-line;
-  width: fit-content;
-  max-width: min(100%, 14ch);
+  width: 100%;
+  max-width: min(100%, 16ch);
   margin-inline: auto;
 }
 
 .answer-line {
   display: block;
-  width: 100%;
+  width: auto;
+  max-width: 100%;
   text-align: center;
 }
 
@@ -772,7 +781,18 @@ button {
 
   .card-answer {
     font-size: clamp(1.12rem, 6.6vw, 1.72rem);
-    max-width: 100%;
+    width: 100%;
+    max-width: min(100%, 12ch);
+    line-height: 1.62;
+    letter-spacing: 0.02em;
+  }
+
+  .card-answer.is-single-line,
+  .card-answer.is-multiline {
+    white-space: normal;
+    width: 100%;
+    max-width: min(100%, 12ch);
+    margin-inline: auto;
   }
 
   .secondary-button {
@@ -804,6 +824,13 @@ button {
   .lead {
     font-size: 0.88rem;
     max-width: 14rem;
+  }
+
+  .card-answer,
+  .card-answer.is-single-line,
+  .card-answer.is-multiline {
+    max-width: min(100%, 11ch);
+    font-size: clamp(1.04rem, 6vw, 1.44rem);
   }
 
   .question-input::placeholder {

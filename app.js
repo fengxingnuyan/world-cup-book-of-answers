@@ -656,8 +656,32 @@ function fitAnswerText(element, maxSize, minSize) {
     return;
   }
 
+  if (isCompactViewport()) {
+    element.style.whiteSpace = "normal";
+    element.style.fontSize = `${Math.min(maxSize, 30)}px`;
+
+    let nextSize = Math.min(maxSize, 30);
+    const maxHeight = element.clientHeight || element.parentElement?.clientHeight || 0;
+
+    while (
+      (element.scrollWidth > element.clientWidth || (maxHeight && element.scrollHeight > maxHeight)) &&
+      nextSize > minSize
+    ) {
+      nextSize -= 1;
+      element.style.fontSize = `${nextSize}px`;
+    }
+
+    return;
+  }
+
   if (element.classList.contains("is-single-line")) {
     fitTextSingleLine(element, maxSize, minSize);
+
+    if (element.scrollWidth > element.clientWidth) {
+      element.style.whiteSpace = "normal";
+      fitTextBlock(element, maxSize, minSize);
+    }
+
     return;
   }
 
