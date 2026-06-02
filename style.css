@@ -1,0 +1,787 @@
+:root {
+  color-scheme: dark;
+  --bg: #07140f;
+  --panel-border: rgba(198, 168, 89, 0.64);
+  --field-border: rgba(198, 168, 89, 0.48);
+  --field-focus: rgba(217, 189, 116, 0.34);
+  --text: #e5d3a0;
+  --muted: rgba(229, 211, 160, 0.78);
+  --accent: #dbc07a;
+  --accent-strong: #f0dfab;
+  --shadow: 0 28px 100px rgba(0, 0, 0, 0.42);
+  --radius: 38px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: "Noto Serif SC", "STSong", "Songti SC", "Microsoft YaHei", serif;
+  color: var(--text);
+  background:
+    linear-gradient(180deg, rgba(2, 8, 5, 0.04), rgba(2, 8, 5, 0.08)),
+    url("file:///D:/%E8%B0%B7%E6%AD%8C%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B8%8B%E8%BD%BD/2026-06-02-10_33_51.png"),
+    #07140f;
+  background-position: center, center, center;
+  background-repeat: no-repeat, no-repeat, no-repeat;
+  background-size: cover, cover, cover;
+  background-attachment: scroll;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at center, rgba(246, 224, 162, 0.05), transparent 28%),
+    linear-gradient(180deg, rgba(8, 20, 14, 0.08), rgba(4, 10, 7, 0.18));
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, rgba(204, 175, 92, 0.02), transparent 12%, transparent 88%, rgba(204, 175, 92, 0.02)),
+    linear-gradient(180deg, rgba(204, 175, 92, 0.02), transparent 10%, transparent 90%, rgba(204, 175, 92, 0.02));
+}
+
+.app-shell {
+  width: min(100%, 1040px);
+  margin: 0 auto;
+  min-height: 100dvh;
+  padding: clamp(14px, 3vw, 28px);
+  display: grid;
+  place-items: center;
+}
+
+.screen {
+  width: 100%;
+  min-height: calc(100dvh - clamp(28px, 6vw, 56px));
+  display: grid;
+  place-items: center;
+}
+
+.panel {
+  width: 100%;
+  position: relative;
+  border: 1px solid rgba(198, 168, 89, 0.38);
+  background: transparent;
+  backdrop-filter: none;
+  box-shadow:
+    var(--shadow),
+    inset 0 0 0 1px rgba(255, 246, 220, 0.03);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.panel::before {
+  content: "";
+  position: absolute;
+  inset: 14px;
+  border: 1px solid rgba(210, 180, 96, 0.56);
+  border-radius: calc(var(--radius) - 8px);
+  pointer-events: none;
+  background:
+    conic-gradient(from 180deg at 34px 34px, rgba(224, 198, 121, 0.46) 0deg 18deg, transparent 18deg 72deg, rgba(224, 198, 121, 0.22) 72deg 90deg, transparent 90deg),
+    conic-gradient(from 270deg at calc(100% - 34px) 34px, rgba(224, 198, 121, 0.46) 0deg 18deg, transparent 18deg 72deg, rgba(224, 198, 121, 0.22) 72deg 90deg, transparent 90deg),
+    conic-gradient(from 90deg at 34px calc(100% - 34px), rgba(224, 198, 121, 0.46) 0deg 18deg, transparent 18deg 72deg, rgba(224, 198, 121, 0.22) 72deg 90deg, transparent 90deg),
+    conic-gradient(from 0deg at calc(100% - 34px) calc(100% - 34px), rgba(224, 198, 121, 0.46) 0deg 18deg, transparent 18deg 72deg, rgba(224, 198, 121, 0.22) 72deg 90deg, transparent 90deg),
+    radial-gradient(circle at 34px 34px, transparent 0 11px, rgba(235, 216, 156, 0.8) 11px 12px, transparent 12px),
+    radial-gradient(circle at calc(100% - 34px) 34px, transparent 0 11px, rgba(235, 216, 156, 0.8) 11px 12px, transparent 12px),
+    radial-gradient(circle at 34px calc(100% - 34px), transparent 0 11px, rgba(235, 216, 156, 0.8) 11px 12px, transparent 12px),
+    radial-gradient(circle at calc(100% - 34px) calc(100% - 34px), transparent 0 11px, rgba(235, 216, 156, 0.8) 11px 12px, transparent 12px),
+    radial-gradient(circle at 34px 34px, transparent 0 22px, rgba(210, 180, 96, 0.22) 22px 23px, transparent 23px),
+    radial-gradient(circle at calc(100% - 34px) 34px, transparent 0 22px, rgba(210, 180, 96, 0.22) 22px 23px, transparent 23px),
+    radial-gradient(circle at 34px calc(100% - 34px), transparent 0 22px, rgba(210, 180, 96, 0.22) 22px 23px, transparent 23px),
+    radial-gradient(circle at calc(100% - 34px) calc(100% - 34px), transparent 0 22px, rgba(210, 180, 96, 0.22) 22px 23px, transparent 23px),
+    radial-gradient(ellipse at 34px 34px, transparent 0 28px, rgba(210, 180, 96, 0.14) 28px 29px, transparent 29px),
+    radial-gradient(ellipse at calc(100% - 34px) 34px, transparent 0 28px, rgba(210, 180, 96, 0.14) 28px 29px, transparent 29px),
+    radial-gradient(ellipse at 34px calc(100% - 34px), transparent 0 28px, rgba(210, 180, 96, 0.14) 28px 29px, transparent 29px),
+    radial-gradient(ellipse at calc(100% - 34px) calc(100% - 34px), transparent 0 28px, rgba(210, 180, 96, 0.14) 28px 29px, transparent 29px),
+    radial-gradient(ellipse at 52px 20px, rgba(224, 198, 121, 0.34) 0 1px, transparent 1.8px),
+    radial-gradient(ellipse at calc(100% - 52px) 20px, rgba(224, 198, 121, 0.34) 0 1px, transparent 1.8px),
+    radial-gradient(ellipse at 52px calc(100% - 20px), rgba(224, 198, 121, 0.34) 0 1px, transparent 1.8px),
+    radial-gradient(ellipse at calc(100% - 52px) calc(100% - 20px), rgba(224, 198, 121, 0.34) 0 1px, transparent 1.8px),
+    radial-gradient(ellipse at 20px 52px, rgba(224, 198, 121, 0.34) 0 1px, transparent 1.8px),
+    radial-gradient(ellipse at calc(100% - 20px) 52px, rgba(224, 198, 121, 0.34) 0 1px, transparent 1.8px),
+    radial-gradient(ellipse at 20px calc(100% - 52px), rgba(224, 198, 121, 0.34) 0 1px, transparent 1.8px),
+    radial-gradient(ellipse at calc(100% - 20px) calc(100% - 52px), rgba(224, 198, 121, 0.34) 0 1px, transparent 1.8px),
+    radial-gradient(circle at 26px 26px, rgba(233, 213, 147, 0.88) 0 1.5px, transparent 2px),
+    radial-gradient(circle at calc(100% - 26px) 26px, rgba(233, 213, 147, 0.88) 0 1.5px, transparent 2px),
+    radial-gradient(circle at 26px calc(100% - 26px), rgba(233, 213, 147, 0.88) 0 1.5px, transparent 2px),
+    radial-gradient(circle at calc(100% - 26px) calc(100% - 26px), rgba(233, 213, 147, 0.88) 0 1.5px, transparent 2px),
+    radial-gradient(circle at 26px 26px, transparent 0 15px, rgba(210, 180, 96, 0.3) 15px 16px, transparent 16px),
+    radial-gradient(circle at calc(100% - 26px) 26px, transparent 0 15px, rgba(210, 180, 96, 0.3) 15px 16px, transparent 16px),
+    radial-gradient(circle at 26px calc(100% - 26px), transparent 0 15px, rgba(210, 180, 96, 0.3) 15px 16px, transparent 16px),
+    radial-gradient(circle at calc(100% - 26px) calc(100% - 26px), transparent 0 15px, rgba(210, 180, 96, 0.3) 15px 16px, transparent 16px),
+    radial-gradient(circle at 26px 26px, transparent 0 24px, rgba(210, 180, 96, 0.14) 24px 25px, transparent 25px),
+    radial-gradient(circle at calc(100% - 26px) 26px, transparent 0 24px, rgba(210, 180, 96, 0.14) 24px 25px, transparent 25px),
+    radial-gradient(circle at 26px calc(100% - 26px), transparent 0 24px, rgba(210, 180, 96, 0.14) 24px 25px, transparent 25px),
+    radial-gradient(circle at calc(100% - 26px) calc(100% - 26px), transparent 0 24px, rgba(210, 180, 96, 0.14) 24px 25px, transparent 25px),
+    linear-gradient(90deg, transparent, rgba(220, 193, 116, 0.45), transparent),
+    linear-gradient(90deg, transparent, rgba(220, 193, 116, 0.45), transparent),
+    linear-gradient(90deg, transparent, rgba(220, 193, 116, 0.45), transparent),
+    linear-gradient(90deg, transparent, rgba(220, 193, 116, 0.45), transparent),
+    linear-gradient(180deg, transparent, rgba(220, 193, 116, 0.45), transparent),
+    linear-gradient(180deg, transparent, rgba(220, 193, 116, 0.45), transparent),
+    linear-gradient(180deg, transparent, rgba(220, 193, 116, 0.45), transparent),
+    linear-gradient(180deg, transparent, rgba(220, 193, 116, 0.45), transparent);
+  background-repeat: no-repeat;
+  background-size:
+    68px 68px,
+    68px 68px,
+    68px 68px,
+    68px 68px,
+    68px 68px,
+    68px 68px,
+    68px 68px,
+    68px 68px,
+    68px 68px,
+    68px 68px,
+    68px 68px,
+    68px 68px,
+    68px 68px,
+    68px 68px,
+    68px 68px,
+    68px 68px,
+    96px 32px,
+    96px 32px,
+    96px 32px,
+    96px 32px,
+    32px 96px,
+    32px 96px,
+    32px 96px,
+    32px 96px,
+    54px 54px,
+    54px 54px,
+    54px 54px,
+    54px 54px,
+    54px 54px,
+    54px 54px,
+    54px 54px,
+    54px 54px,
+    54px 54px,
+    54px 54px,
+    54px 54px,
+    54px 54px,
+    88px 1px,
+    88px 1px,
+    88px 1px,
+    88px 1px,
+    1px 88px,
+    1px 88px,
+    1px 88px,
+    1px 88px;
+  background-position:
+    0 0,
+    100% 0,
+    0 100%,
+    100% 100%,
+    0 0,
+    100% 0,
+    0 100%,
+    100% 100%,
+    0 0,
+    100% 0,
+    0 100%,
+    100% 100%,
+    0 0,
+    100% 0,
+    0 100%,
+    100% 100%,
+    18px 8px,
+    calc(100% - 114px) 8px,
+    18px calc(100% - 40px),
+    calc(100% - 114px) calc(100% - 40px),
+    8px 18px,
+    calc(100% - 40px) 18px,
+    8px calc(100% - 114px),
+    calc(100% - 40px) calc(100% - 114px),
+    0 0,
+    100% 0,
+    0 100%,
+    100% 100%,
+    0 0,
+    100% 0,
+    0 100%,
+    100% 100%,
+    0 0,
+    100% 0,
+    0 100%,
+    100% 100%,
+    44px 18px,
+    calc(100% - 132px) 18px,
+    44px calc(100% - 18px),
+    calc(100% - 132px) calc(100% - 18px),
+    18px 44px,
+    calc(100% - 18px) 44px,
+    18px calc(100% - 132px),
+    calc(100% - 18px) calc(100% - 132px);
+}
+
+.panel::after {
+  content: "";
+  position: absolute;
+  inset: 6px;
+  border-radius: calc(var(--radius) - 2px);
+  border: 1px solid rgba(210, 180, 96, 0.16);
+  background:
+    radial-gradient(ellipse at 50% 18px, rgba(233, 213, 147, 0.92) 0 1.3px, transparent 2px),
+    radial-gradient(ellipse at 50% calc(100% - 18px), rgba(233, 213, 147, 0.92) 0 1.3px, transparent 2px),
+    radial-gradient(ellipse at 50% 20px, transparent 0 12px, rgba(220, 193, 116, 0.28) 12px 13px, transparent 13px),
+    radial-gradient(ellipse at 50% calc(100% - 20px), transparent 0 12px, rgba(220, 193, 116, 0.28) 12px 13px, transparent 13px),
+    linear-gradient(90deg, transparent, rgba(220, 193, 116, 0.18), transparent),
+    linear-gradient(90deg, transparent, rgba(220, 193, 116, 0.18), transparent),
+    radial-gradient(circle at 50% 22px, rgba(233, 213, 147, 0.72) 0 1.5px, transparent 2px),
+    radial-gradient(circle at 50% calc(100% - 22px), rgba(233, 213, 147, 0.72) 0 1.5px, transparent 2px),
+    linear-gradient(90deg, transparent, rgba(220, 193, 116, 0.38), transparent),
+    linear-gradient(90deg, transparent, rgba(220, 193, 116, 0.38), transparent),
+    linear-gradient(180deg, transparent, rgba(220, 193, 116, 0.18), transparent),
+    linear-gradient(180deg, transparent, rgba(220, 193, 116, 0.18), transparent);
+  background-repeat: no-repeat;
+  background-size:
+    42px 24px,
+    42px 24px,
+    84px 26px,
+    84px 26px,
+    180px 1px,
+    180px 1px,
+    32px 32px,
+    32px 32px,
+    140px 1px,
+    140px 1px,
+    1px 110px,
+    1px 110px;
+  background-position:
+    50% 7px,
+    50% calc(100% - 31px),
+    50% 6px,
+    50% calc(100% - 32px),
+    50% 20px,
+    50% calc(100% - 20px),
+    50% 6px,
+    50% calc(100% - 38px),
+    50% 22px,
+    50% calc(100% - 22px),
+    22px 50%,
+    calc(100% - 22px) 50%;
+  pointer-events: none;
+}
+
+.hero-panel,
+.answer-panel {
+  display: grid;
+  justify-items: center;
+  align-content: center;
+  gap: clamp(18px, 3vw, 28px);
+  padding: clamp(34px, 6vw, 72px) clamp(18px, 4vw, 42px);
+  min-height: min(860px, calc(100dvh - clamp(28px, 6vw, 56px)));
+  text-align: center;
+}
+
+.answer-panel {
+  isolation: isolate;
+  background:
+    linear-gradient(180deg, rgba(8, 18, 13, 0.6), rgba(5, 11, 8, 0.68)),
+    radial-gradient(circle at center, rgba(228, 202, 128, 0.03), transparent 58%);
+}
+
+.eyebrow {
+  margin: 0;
+  color: rgba(228, 202, 128, 0.92);
+  font-family: "Cormorant Garamond", "Times New Roman", serif;
+  letter-spacing: 0.18em;
+  font-size: 1rem;
+  text-transform: uppercase;
+  text-shadow: 0 0 18px rgba(216, 190, 118, 0.08);
+}
+
+h1 {
+  margin: 0;
+  font-size: clamp(2.8rem, 9vw, 5.6rem);
+  line-height: 1.08;
+  letter-spacing: 0.05em;
+  text-align: center;
+  color: #ddc27b;
+  text-shadow:
+    0 2px 0 rgba(114, 88, 29, 0.38),
+    0 0 22px rgba(228, 202, 128, 0.12);
+  max-width: 100%;
+  white-space: nowrap;
+  justify-self: center;
+}
+
+.lead,
+.stage-message,
+.share-hint {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.8;
+  text-align: center;
+}
+
+.lead {
+  max-width: min(80vw, 28rem);
+  font-size: clamp(1rem, 3.2vw, 1.3rem);
+  line-height: 1.9;
+  color: rgba(224, 195, 113, 0.92);
+  text-shadow: 0 0 14px rgba(224, 195, 113, 0.08);
+  white-space: nowrap;
+  justify-self: center;
+}
+
+.input-panel {
+  width: min(100%, 720px);
+  display: grid;
+  gap: 22px;
+  justify-items: center;
+}
+
+.question-input {
+  width: 100%;
+  border: 1px solid var(--field-border);
+  border-radius: 34px;
+  background:
+    linear-gradient(180deg, rgba(8, 22, 15, 0.86), rgba(8, 22, 15, 0.9)),
+    radial-gradient(circle at center, rgba(220, 194, 124, 0.04), transparent 58%);
+  color: #e7d39d;
+  padding: 34px 36px;
+  font: inherit;
+  resize: none;
+  min-height: clamp(148px, 24vw, 208px);
+  line-height: 1.95;
+  font-size: clamp(1rem, 2.8vw, 1.08rem);
+  text-align: center;
+  outline: none;
+  transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+  box-shadow:
+    inset 0 0 0 1px rgba(222, 196, 124, 0.1),
+    0 0 0 1px rgba(5, 18, 12, 0.12);
+  justify-self: center;
+}
+
+.question-input:focus {
+  border-color: var(--field-focus);
+  box-shadow:
+    0 0 0 4px rgba(217, 189, 116, 0.1),
+    inset 0 0 0 1px rgba(222, 196, 124, 0.18);
+  transform: translateY(-1px);
+}
+
+.question-input::placeholder {
+  text-align: center;
+  color: rgba(221, 194, 123, 0.88);
+  font-size: clamp(0.96rem, 2.6vw, 1.04rem);
+}
+
+.primary-actions,
+.result-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+button {
+  border: 0;
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+}
+
+.primary-button,
+.secondary-button,
+.ghost-button {
+  border-radius: 999px;
+  transition: transform 160ms ease, opacity 160ms ease, box-shadow 160ms ease, background-color 160ms ease;
+}
+
+.primary-button:hover,
+.secondary-button:hover,
+.ghost-button:hover {
+  transform: translateY(-1px);
+}
+
+.primary-button:active,
+.secondary-button:active,
+.ghost-button:active {
+  transform: translateY(0);
+}
+
+.primary-button {
+  padding: 18px 46px;
+  background:
+    radial-gradient(circle at top, rgba(251, 240, 205, 0.7), rgba(222, 192, 111, 0.16)),
+    linear-gradient(180deg, rgba(226, 197, 120, 0.88), rgba(154, 120, 47, 0.88));
+  color: #201607;
+  font-weight: 700;
+  border: 1px solid rgba(101, 74, 24, 0.58);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 246, 220, 0.55),
+    0 10px 24px rgba(0, 0, 0, 0.26);
+  min-width: min(210px, 100%);
+  font-size: 1.35rem;
+}
+
+.secondary-button,
+.ghost-button {
+  padding: 13px 24px;
+  border: 1px solid rgba(210, 180, 96, 0.34);
+  background: rgba(12, 22, 16, 0.72);
+  color: #e1ca8a;
+}
+
+.secondary-button-save {
+  background: rgba(194, 166, 92, 0.16);
+  border-color: rgba(210, 180, 96, 0.44);
+}
+
+.hidden {
+  display: none;
+}
+
+.answer-panel {
+  gap: 28px;
+}
+
+.stage-message {
+  max-width: min(84vw, 24rem);
+  font-size: clamp(1rem, 3vw, 1.18rem);
+  line-height: 1.9;
+  animation: fatePulse 1.8s ease-in-out infinite;
+  color: rgba(226, 200, 129, 0.92);
+  justify-self: center;
+}
+
+.result-card {
+  width: min(100%, 720px);
+  justify-self: center;
+}
+
+.result-card.is-revealed {
+  animation: cardReveal 820ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.card-frame {
+  position: relative;
+  padding: clamp(30px, 5vw, 54px) clamp(20px, 4.8vw, 46px) clamp(34px, 6vw, 60px);
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+}
+
+.card-frame::before {
+  content: none;
+}
+
+.card-frame::after {
+  content: none;
+}
+
+.card-title {
+  margin: 0;
+  text-align: center;
+  letter-spacing: 0.1em;
+  color: rgba(224, 195, 113, 0.9);
+  font-size: 1rem;
+  justify-self: center;
+}
+
+.card-divider {
+  width: 68px;
+  height: 1px;
+  margin: 20px auto 34px;
+  background: linear-gradient(90deg, transparent, rgba(224, 195, 113, 0.68), transparent);
+}
+
+.card-question {
+  margin: 0 0 34px;
+  text-align: center;
+  color: rgba(226, 204, 146, 0.62);
+  line-height: 1.82;
+  font-size: clamp(0.78rem, 1.9vw, 0.94rem);
+  white-space: normal;
+  max-width: min(100%, 26rem);
+  justify-self: center;
+}
+
+.card-answer {
+  margin: 0;
+  display: grid;
+  gap: 0.18em;
+  justify-items: center;
+  text-align: center;
+  font-size: clamp(1.28rem, 4.8vw, 2.16rem);
+  line-height: 1.7;
+  letter-spacing: 0.06em;
+  white-space: pre-line;
+  color: #f0dfab;
+  text-shadow:
+    0 0 18px rgba(240, 223, 171, 0.08),
+    0 1px 0 rgba(112, 83, 30, 0.32);
+  max-width: min(100%, 15ch);
+  justify-self: center;
+  word-break: keep-all;
+  overflow-wrap: normal;
+}
+
+.card-answer.is-single-line {
+  white-space: nowrap;
+  display: block;
+  max-width: 100%;
+  line-height: 1.35;
+}
+
+.card-answer.is-multiline {
+  white-space: pre-line;
+  width: fit-content;
+  max-width: min(100%, 14ch);
+  margin-inline: auto;
+}
+
+.answer-line {
+  display: block;
+  width: 100%;
+  text-align: center;
+}
+
+.share-hint {
+  max-width: 28rem;
+  font-size: 0.92rem;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (max-width: 720px) {
+  .panel::before {
+    inset: 10px;
+    background-size:
+      54px 54px,
+      54px 54px,
+      54px 54px,
+      54px 54px,
+      54px 54px,
+      54px 54px,
+      54px 54px,
+      54px 54px,
+      54px 54px,
+      54px 54px,
+      54px 54px,
+      54px 54px,
+      54px 54px,
+      54px 54px,
+      54px 54px,
+      54px 54px,
+      72px 24px,
+      72px 24px,
+      72px 24px,
+      72px 24px,
+      24px 72px,
+      24px 72px,
+      24px 72px,
+      24px 72px,
+      42px 42px,
+      42px 42px,
+      42px 42px,
+      42px 42px,
+      42px 42px,
+      42px 42px,
+      42px 42px,
+      42px 42px,
+      42px 42px,
+      42px 42px,
+      42px 42px,
+      42px 42px,
+      62px 1px,
+      62px 1px,
+      62px 1px,
+      62px 1px,
+      1px 62px,
+      1px 62px,
+      1px 62px,
+      1px 62px;
+    background-position:
+      0 0,
+      100% 0,
+      0 100%,
+      100% 100%,
+      0 0,
+      100% 0,
+      0 100%,
+      100% 100%,
+      0 0,
+      100% 0,
+      0 100%,
+      100% 100%,
+      0 0,
+      100% 0,
+      0 100%,
+      100% 100%,
+      14px 6px,
+      calc(100% - 86px) 6px,
+      14px calc(100% - 30px),
+      calc(100% - 86px) calc(100% - 30px),
+      6px 14px,
+      calc(100% - 30px) 14px,
+      6px calc(100% - 86px),
+      calc(100% - 30px) calc(100% - 86px),
+      0 0,
+      100% 0,
+      0 100%,
+      100% 100%,
+      0 0,
+      100% 0,
+      0 100%,
+      100% 100%,
+      0 0,
+      100% 0,
+      0 100%,
+      100% 100%,
+      34px 16px,
+      calc(100% - 96px) 16px,
+      34px calc(100% - 16px),
+      calc(100% - 96px) calc(100% - 16px),
+      16px 34px,
+      calc(100% - 16px) 34px,
+      16px calc(100% - 96px),
+      calc(100% - 16px) calc(100% - 96px);
+  }
+
+  .panel::after {
+    inset: 5px;
+    background-size:
+      30px 18px,
+      30px 18px,
+      64px 20px,
+      64px 20px,
+      112px 1px,
+      112px 1px,
+      24px 24px,
+      24px 24px,
+      96px 1px,
+      96px 1px,
+      1px 80px,
+      1px 80px;
+    background-position:
+      50% 7px,
+      50% calc(100% - 25px),
+      50% 6px,
+      50% calc(100% - 26px),
+      50% 18px,
+      50% calc(100% - 18px),
+      50% 6px,
+      50% calc(100% - 30px),
+      50% 18px,
+      50% calc(100% - 18px),
+      18px 50%,
+      calc(100% - 18px) 50%;
+  }
+
+  .hero-panel,
+  .answer-panel {
+    min-height: calc(100dvh - 32px);
+    padding: 40px 18px;
+  }
+
+  .question-input {
+    min-height: 150px;
+    padding: 24px 20px;
+  }
+
+  .result-actions {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .primary-button {
+    width: min(100%, 260px);
+    min-width: 0;
+    font-size: 1.16rem;
+  }
+
+  h1 {
+    font-size: clamp(2.4rem, 12vw, 4rem);
+  }
+
+  .lead {
+    font-size: 1rem;
+    max-width: 18rem;
+  }
+
+  .card-frame {
+    padding: 42px 24px 48px;
+  }
+
+  .card-answer {
+    font-size: clamp(1.12rem, 6.6vw, 1.72rem);
+    max-width: 100%;
+  }
+
+  .secondary-button {
+    width: min(100%, 220px);
+  }
+}
+
+@media (min-width: 721px) and (max-width: 1024px) {
+  .hero-panel,
+  .answer-panel {
+    padding: 52px 28px;
+  }
+
+  .result-card {
+    width: min(100%, 660px);
+  }
+
+  .card-answer {
+    max-width: min(100%, 14ch);
+  }
+}
+
+@keyframes fatePulse {
+  0%,
+  100% {
+    opacity: 0.52;
+    transform: translateY(0);
+  }
+
+  50% {
+    opacity: 1;
+    transform: translateY(-2px);
+  }
+}
+
+@keyframes cardReveal {
+  0% {
+    opacity: 0;
+    transform: translateY(18px) scale(0.97);
+    filter: blur(8px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>世界杯答案之书</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section id="inputView" class="screen screen-input">
+        <div class="panel hero-panel">
+          <p class="eyebrow">WORLD CUP BOOK OF ANSWERS</p>
+          <h1>世界杯答案之书</h1>
+          <p class="lead">把问题交给命运，把答案交给比赛。</p>
+
+          <div class="input-panel">
+            <label class="sr-only" for="questionInput">输入你的问题</label>
+            <textarea
+              id="questionInput"
+              class="question-input"
+              rows="3"
+              maxlength="120"
+              placeholder="把问题写下来，剩下的交给比赛。"
+            ></textarea>
+          </div>
+
+          <div class="primary-actions">
+            <button id="drawButton" class="primary-button" type="button">开球</button>
+          </div>
+        </div>
+      </section>
+
+      <section id="answerView" class="screen screen-answer hidden">
+        <div class="panel answer-panel">
+          <p id="stageMessage" class="stage-message">比赛正在给你答案……</p>
+
+          <article id="resultCard" class="result-card hidden" aria-live="polite">
+            <div class="card-frame">
+              <p class="card-title">世界杯答案之书</p>
+              <div class="card-divider"></div>
+              <p id="cardQuestion" class="card-question"></p>
+              <p id="cardAnswer" class="card-answer"></p>
+            </div>
+          </article>
+
+          <div id="resultActions" class="result-actions hidden">
+            <button id="againButton" class="secondary-button" type="button">再开一球</button>
+            <button id="saveButton" class="secondary-button secondary-button-save" type="button">保存图片</button>
+          </div>
+          <p id="saveHint" class="share-hint hidden"></p>
+        </div>
+      </section>
+    </main>
+
+    <template id="shareFallbackTemplate">
+      <a download="world-cup-answer.png"></a>
+    </template>
+
+    <script src="./answers.js"></script>
+    <script src="./app.js"></script>
+  </body>
+</html>
