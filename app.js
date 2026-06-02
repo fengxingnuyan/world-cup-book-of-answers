@@ -26,6 +26,7 @@ const drawButton = document.querySelector("#drawButton");
 const againButton = document.querySelector("#againButton");
 const saveButton = document.querySelector("#saveButton");
 const saveHint = document.querySelector("#saveHint");
+const githubStarLink = document.querySelector("#githubStarLink");
 const pageTitle = document.querySelector("h1");
 const pageLead = document.querySelector(".lead");
 const stageMessage = document.querySelector("#stageMessage");
@@ -113,6 +114,7 @@ async function drawAnswer() {
   resultCard.classList.remove("hidden");
   resultCard.classList.add("is-revealed");
   resultActions.classList.remove("hidden");
+  githubStarLink.classList.remove("hidden");
   saveButton.classList.toggle("hidden", currentMode === "limit");
   drawButton.disabled = false;
   againButton.disabled = false;
@@ -270,6 +272,7 @@ function returnToQuestionView() {
   questionInput.value = "";
   applyFreshPlaceholder();
   setSaveHint("");
+  githubStarLink.classList.add("hidden");
   window.scrollTo({ top: 0, behavior: "smooth" });
   queueTypographyFit();
 }
